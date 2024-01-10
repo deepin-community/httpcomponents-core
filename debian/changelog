@@ -1,3 +1,16 @@
+httpcomponents-core (4.4.16-1) unstable; urgency=medium
+
+  * New upstream release
+  * Standards-Version updated to 4.6.1
+
+ -- Emmanuel Bourg <ebourg@apache.org>  Mon, 05 Dec 2022 14:26:12 +0100
+
+httpcomponents-core (4.4.15-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Emmanuel Bourg <ebourg@apache.org>  Mon, 02 May 2022 18:28:19 +0200
+
 httpcomponents-core (4.4.14-2) unstable; urgency=medium
 
   * Track only the 4.x releases

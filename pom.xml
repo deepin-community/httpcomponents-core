@@ -33,7 +33,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>httpcomponents-core</artifactId>
   <name>Apache HttpComponents Core</name>
-  <version>4.4.14</version>
+  <version>4.4.16</version>
   <description>Apache HttpComponents Core is a library of components for building HTTP enabled services</description>
   <url>http://hc.apache.org/httpcomponents-core-ga</url>
   <inceptionYear>2005</inceptionYear>
@@ -61,8 +61,16 @@
     <connection>scm:git:https://git-wip-us.apache.org/repos/asf/httpcomponents-core.git</connection>
     <developerConnection>scm:git:https://git-wip-us.apache.org/repos/asf/httpcomponents-core.git</developerConnection>
     <url>https://github.com/apache/httpcomponents-core/tree/${project.scm.tag}</url>
-    <tag>4.4.14</tag>
+    <tag>4.4.16</tag>
   </scm>
+
+  <distributionManagement>
+    <site>
+      <id>apache.website</id>
+      <name>Apache HttpComponents Website</name>
+      <url>scm:svn:https://svn.apache.org/repos/asf/httpcomponents/site/components/httpcomponents-core-4.4.x/LATEST/</url>
+    </site>
+  </distributionManagement>
 
   <modules>
     <module>httpcore</module>
@@ -81,7 +89,6 @@
     <mockito.version>1.10.19</mockito.version>
     <commons-logging.version>1.2</commons-logging.version>
     <api.comparison.version>4.4</api.comparison.version>
-    <hc.stylecheck.version>1</hc.stylecheck.version>
   </properties>
 
   <dependencyManagement>
@@ -241,55 +248,17 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <configuration>
-          <encoding>UTF-8</encoding>
+          <configLocation>hc-stylecheck/default.xml</configLocation>
+          <headerLocation>hc-stylecheck/asl2.header</headerLocation>
+          <consoleOutput>true</consoleOutput>
+          <failsOnError>true</failsOnError>
+          <linkXRef>false</linkXRef>
+          <sourceDirectories>
+            <sourceDirectory>${basedir}/src/main/</sourceDirectory>
+            <sourceDirectory>${basedir}/src/test</sourceDirectory>
+          </sourceDirectories>
+          <excludes>**/java-deprecated/**</excludes>
         </configuration>
-        <executions>
-          <execution>
-            <id>validate-main</id>
-            <phase>validate</phase>
-            <configuration>
-              <configLocation>hc-stylecheck/default.xml</configLocation>
-              <headerLocation>hc-stylecheck/asl2.header</headerLocation>
-              <consoleOutput>true</consoleOutput>
-              <failsOnError>true</failsOnError>
-              <linkXRef>false</linkXRef>
-              <sourceDirectory>${basedir}/src/main</sourceDirectory>
-            </configuration>
-            <goals>
-              <goal>checkstyle</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>validate-test</id>
-            <phase>validate</phase>
-            <configuration>
-              <configLocation>hc-stylecheck/default.xml</configLocation>
-              <headerLocation>hc-stylecheck/asl2.header</headerLocation>
-              <consoleOutput>true</consoleOutput>
-              <failsOnError>true</failsOnError>
-              <linkXRef>false</linkXRef>
-              <sourceDirectory>${basedir}/src/test</sourceDirectory>
-            </configuration>
-            <goals>
-              <goal>checkstyle</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>validate-examples</id>
-            <phase>validate</phase>
-            <configuration>
-              <configLocation>hc-stylecheck/minimal.xml</configLocation>
-              <headerLocation>hc-stylecheck/asl2.header</headerLocation>
-              <consoleOutput>true</consoleOutput>
-              <failsOnError>true</failsOnError>
-              <linkXRef>false</linkXRef>
-              <sourceDirectory>${basedir}/src/examples</sourceDirectory>
-            </configuration>
-            <goals>
-              <goal>checkstyle</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -351,7 +320,6 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>clirr-maven-plugin</artifactId>
-        <version>${hc.clirr.version}</version>
         <configuration>
           <comparisonVersion>${api.comparison.version}</comparisonVersion>
         </configuration>
