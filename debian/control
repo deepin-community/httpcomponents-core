@@ -10,7 +10,7 @@ Build-Depends:
  libmaven-antrun-plugin-java,
  libmaven-bundle-plugin-java,
  maven-debian-helper
-Standards-Version: 4.6.0.1
+Standards-Version: 4.6.1
 Vcs-Git: https://salsa.debian.org/java-team/httpcomponents-core.git
 Vcs-Browser: https://salsa.debian.org/java-team/httpcomponents-core
 Homepage: http://hc.apache.org/httpcomponents-core-ga/index.html
